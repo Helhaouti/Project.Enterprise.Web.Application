@@ -1,0 +1,105 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <div class="column is-full-mobile is-half-tablet is-half-desktop">
+
+      <div class="box">
+        <h1>Register</h1>
+
+        <mat-stepper [linear]="true" orientation="horizontal">
+          <mat-step [stepControl]="credentialsGroup">
+            <ng-template matStepLabel>Credentials</ng-template>
+
+            <form [formGroup]="credentialsGroup">
+              <!-- User / Nick name -->
+              <mat-form-field appearance="outline" class="row">
+                <mat-label>Nick name</mat-label>
+                <input
+                  formControlName="username"
+                  matInput
+                  type="text">
+              </mat-form-field>
+
+              <div formGroupName="password">
+                <!-- Password registration -->
+                <mat-form-field appearance="outline" class="row">
+                  <mat-label>Password</mat-label>
+                  <input
+                    formControlName="password"
+                    matInput
+                    type="password">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="row">
+                  <mat-label>Repeat your password</mat-label>
+                  <input
+                    formControlName="rePassword"
+                    matInput
+                    type="password">
+                </mat-form-field>
+              </div>
+
+            </form>
+
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step [stepControl]="userDetailsGroup">
+            <ng-template matStepLabel>User details</ng-template>
+
+            <form [formGroup]="userDetailsGroup">
+
+              <mat-form-field appearance="outline" class="row">
+                <mat-label>First name</mat-label>
+                <input
+                  formControlName="firstName"
+                  matInput
+                  type="text">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="row">
+                <mat-label>Last name</mat-label>
+                <input
+                  formControlName="lastName"
+                  matInput
+                  type="text">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="row">
+                <mat-label>Email</mat-label>
+                <input
+                  formControlName="email"
+                  matInput
+                  type="email">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="row">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="countryCode">
+                  <mat-option value="NL">Netherlands</mat-option>
+                  <mat-option value="BE">Belgium</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </form>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button
+                (click)="save()"
+                [disabled]="!form.valid"
+                mat-button
+              >Create account
+              </button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+
+        <p>Do you have an account already? <a [routerLink]="'/login'">Click here</a></p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

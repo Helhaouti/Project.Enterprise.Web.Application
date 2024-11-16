@@ -1,0 +1,18 @@
+<div class="chat">
+  <div class="topBar">
+    <button (click)="clearMessages()" mat-raised-button>clear</button>
+  </div>
+  <div class="messages" id="chat">
+    <div *ngFor="let message of messages">
+      <div class="message {{message.user?.id == currentPlayerId}}">
+        <label>{{ message.message }}</label>
+      </div>
+      <label class="player {{message.user?.id == currentPlayerId}}">{{ message.user?.username }}
+        - {{ message.time }}</label>
+    </div>
+  </div>
+  <div class="input">
+    <input placeholder="Type your message here!" [(ngModel)]="message" (keyup.enter)="sendMessage()" type="text"
+           maxlength="60"/>
+  </div>
+</div>

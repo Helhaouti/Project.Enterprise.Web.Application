@@ -1,0 +1,10 @@
+<div class="container mat-elevation-z7">
+
+  <div class="dices">
+    <img *ngIf="showDice" [ngClass]="'shake'" class="dice" src="/assets/images/dice-{{this.diceOne}}.svg">
+    <img *ngIf="showDice" [ngClass]="'shake'" class="dice" src="/assets/images/dice-{{this.diceTwo}}.svg">
+  </div>
+
+  <h2 class="has-text-centered">{{ this.diceRollAmountDescription }} {{ this.diceRollAmount }}</h2>
+
+</div>

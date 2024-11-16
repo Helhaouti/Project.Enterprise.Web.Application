@@ -1,0 +1,24 @@
+<div class="leaderboard-container scrollbar-styled">
+
+  <div
+    *ngFor="let player of players"
+    [ngClass]="{
+    'bankrupt' : player.bankrupt,
+    'currentTurn' : player.turnNumber === currentTurnNumber
+    }"
+    class="mat-elevation-z4 player-representation"
+  >
+    <app-player-profile-picture [player]="player" size="medium" style="max-height: 5rem;"></app-player-profile-picture>
+
+    <div class="player-details">
+      <h3>{{ player.user.firstName }} {{ player.user.lastName }}</h3>
+      <h1>{{ player.user.username }}</h1>
+      <p>${{ player.money }}</p>
+      <p *ngIf="this.player.roundsInJail > 0">
+        Rounds in jail: {{ this.player.roundsInJail }}/3
+      </p>
+    </div>
+
+  </div>
+
+</div>

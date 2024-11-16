@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div *ngIf="isStarted" class="columns is-multiline is-centered">
+    <div class="column is-full-mobile is-full-tablet is-two-thirds-desktop">
+
+      <div class="box">
+        <h1 class="has-text-centered">{{ this.winner.user.username }} has won the game</h1>
+
+        <app-game-action-overview></app-game-action-overview>
+
+        <div class="button-container">
+          <button
+            (click)="goToGameOverview()"
+            mat-raised-button
+            matTooltip="Go to game overview"
+            matTooltipPosition="above"
+          >
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

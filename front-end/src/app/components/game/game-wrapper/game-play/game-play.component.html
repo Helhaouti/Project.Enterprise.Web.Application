@@ -1,0 +1,92 @@
+<div class="container" id="gameContainer">
+  <div class="columns is-multiline is-centered">
+
+    <div class="column mainColumn">
+      <div class="box">
+        <app-game-board *ngIf="gameStarted; else gameNotStartedPlaceHolder"></app-game-board>
+
+        <ng-template #gameNotStartedPlaceHolder>
+          <h3>The game has not started yet...</h3>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="column is-mobile">
+      <div class="box turnTrackerSideWindow">
+        <app-game-turn-tracker *ngIf="gameStarted; else gameNotStartedPlaceHolder"></app-game-turn-tracker>
+      </div>
+
+      <div class="box sideWindow">
+        <mat-tab-group dynamicHeight *ngIf="gameStarted; else gameNotStartedPlaceHolder">
+          <mat-tab label="Leaderboard">
+            <app-leaderboard-overview></app-leaderboard-overview>
+          </mat-tab>
+
+          <mat-tab label="Chat">
+            <app-chat></app-chat>
+          </mat-tab>
+
+          <mat-tab label="History">
+            <app-game-action-overview></app-game-action-overview>
+          </mat-tab>
+
+          <mat-tab *ngIf="this.playerIsCreator()" label="Settings">
+            <app-game-settings-overview-admin></app-game-settings-overview-admin>
+          </mat-tab>
+
+          <mat-tab *ngIf="!this.playerIsCreator()" label="Settings">
+            <app-game-settings-overview-player></app-game-settings-overview-player>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+
+      <div class="box buttonSideWindow">
+        <button
+          (click)="onDiceRoll()"
+          [disabled]="!currentPlayerAbleToRollDice"
+          mat-raised-button
+        >
+          <mat-icon>casino</mat-icon>
+          Roll the dice!
+        </button>
+
+        <button
+          (click)="onBack()"
+          mat-raised-button
+          matTooltip="Go to game overview"
+          matTooltipPosition="left"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+
+        <button
+          (click)="onGameLeave()"
+          mat-raised-button
+          matTooltip="Leave current game"
+          matTooltipPosition="left"
+        >
+          <mat-icon>logout</mat-icon>
+          Leave game
+        </button>
+
+        <button
+          (click)="onLoadGameActions()"
+          mat-raised-button
+          matTooltip="Load new game actions"
+          matTooltipPosition="left"
+        >
+          <mat-progress-spinner
+            diameter="25"
+            [value]="gameActionRefreshInterval"
+            class="is-inline-block">
+          </mat-progress-spinner>
+          Refresh
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

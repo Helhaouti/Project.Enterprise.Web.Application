@@ -1,0 +1,56 @@
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  max-height: calc(min(425px, 92vw) * 1.25);
+  overflow-y: scroll;
+}
+
+.player-representation {
+  display: flex;
+  margin-inline: auto;
+
+  width: calc(100% - 2rem);
+  height: calc(100%);
+
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+
+  user-select: none;
+
+  background-color: #e20613;
+  color: white;
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+.bankrupt {
+  background: grey;
+  color: black;
+}
+
+.currentTurn {
+  background: #cde6d0;
+  color: black;
+}
+
+app-player-profile-picture {
+  display: inline-block;
+  border-radius: 100%;
+  margin-right: 1rem;
+
+  color: black;
+  background: white;
+}
+
+.player-details {
+
+  h1, h3, p {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+}

@@ -1,0 +1,63 @@
+<div class="player-info-card">
+  <div class="rowContainer is-flex is-justify-content-center">
+    <app-player-profile-picture [player]="this.player" size="big"></app-player-profile-picture>
+  </div>
+
+  <div class="rowContainer">
+    <h3>User name</h3>
+    <p>{{ this.player.user.username }}</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>Full name</h3>
+    <p>{{ this.player.user.firstName + " " + this.player.user.lastName }}</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>Country</h3>
+    <p>{{ this.player.user.countryCode }}</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>A gamer since</h3>
+    <p>{{ this.player.user.createdAt.toDateString() }}</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>Rounds in jail.</h3>
+    <p *ngIf="this.player.roundsInJail > 0">{{ this.player.roundsInJail }}/3</p>
+    <p *ngIf="this.player.roundsInJail === 0">NA</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>Amount of money</h3>
+    <p>{{ this.player.money }}</p>
+  </div>
+
+  <div class="rowContainer">
+    <h3>Owned location on the board.</h3>
+
+    <div class="carousel">
+      <board-location
+        *ngFor="let i of player.properties"
+        [location]="i"
+        [players]="this.gameStateManagerService.getGameSnapshot().players"
+        position="bottom"
+      ></board-location>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="player-card-buttons">
+    <button
+      (click)="onClose()"
+      mat-raised-button
+    >
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+  </div>
+
+</div>

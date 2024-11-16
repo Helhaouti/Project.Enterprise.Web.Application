@@ -1,0 +1,98 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <div class="column is-full-mobile is-full-tablet is-two-thirds-desktop">
+
+      <div class="box">
+        <!--
+        Joinable games Sections
+        -->
+        <h1>Game lobby</h1>
+
+        <div *ngIf="this.gameIsJoinable(); else notJoinable">
+          <div class="mat-elevation-z4" id="instructionText">
+            <a class="iconContainer">
+              <mat-icon>priority_high</mat-icon>
+            </a>
+            <p>
+              The game will start automatically.
+              This happens either the max amount of players that were selected have joined
+              , or when its time to start the game and at least two people are present.
+            </p>
+          </div>
+
+          <h3>Game settings</h3>
+          <div class="gameSettingOverview">
+            <p class="gameSettingInfo">Maximum amount of players: {{ this.gameSession.maxPlayers }}.</p>
+            <p class="gameSettingInfo">The game starts at: {{ this.gameSession.startsAt.toLocaleString() }}.</p>
+            <p class="gameSettingInfo">A turn lasts a maximum of: {{ this.gameSession.maxTimeTurn }} minutes.</p>
+            <p class="gameSettingInfo">The game end at: {{ this.gameSession.endsAt.toLocaleString() }} or when someone
+              wins.</p>
+          </div>
+
+          <h3>Players</h3>
+          <div class="playerOverview">
+            <mat-card *ngFor="let player of gameSession.players" class="playerContainer">
+              <mat-card-content class="is-flex is-justify-content-center">
+                <app-player-profile-picture
+                  [player]="player"
+                  size="big"
+                ></app-player-profile-picture>
+              </mat-card-content>
+              <mat-card-subtitle>{{ player.user.firstName + " " + player.user.lastName }}</mat-card-subtitle>
+              <mat-card-title>{{ player.user.username }}</mat-card-title>
+            </mat-card>
+          </div>
+
+        </div>
+
+        <ng-template #notJoinable>
+          <p class="has-text-centered is-size-6 is-italic">
+            This game is no longer available.
+            <br>Click on <a (click)="onBack()" class="is-bold">back</a> to create or join another game.
+          </p>
+        </ng-template>
+
+        <!-- Buttons -->
+        <div class="buttons is-right">
+          <button
+            (click)="onBack()"
+            mat-raised-button
+            matTooltip="Go to game overview"
+            matTooltipPosition="above"
+          >
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+
+          <button
+            (click)="onLeaveGame()"
+            mat-raised-button
+            matTooltip="Leave current game"
+            matTooltipPosition="above"
+          >
+            <mat-icon>logout</mat-icon>
+            Leave
+          </button>
+
+          <button
+            (click)="onLoadGame()"
+            mat-raised-button
+            matTooltip="Load new game actions"
+            matTooltipPosition="above"
+          >
+            <mat-progress-spinner
+              diameter="25"
+              [value]="gameRefreshInterval"
+              class="is-inline-block">
+            </mat-progress-spinner>
+            Refresh
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

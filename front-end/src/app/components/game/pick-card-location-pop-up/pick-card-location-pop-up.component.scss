@@ -1,0 +1,49 @@
+.monopoly-card {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.monopoly-card-title {
+  padding: 1rem;
+
+  h1, h3 {
+    text-align: center;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+.monopoly-man-image {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+
+  img {
+    height: 200px;
+    width: 140px;
+  }
+}
+
+.monopoly-card-attributes {
+  padding: 1rem;
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.monopoly-card-buttons {
+  width: 100%;
+
+  display: flex;
+  justify-content: right;
+}

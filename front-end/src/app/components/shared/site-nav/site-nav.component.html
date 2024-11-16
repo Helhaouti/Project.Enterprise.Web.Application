@@ -1,0 +1,167 @@
+<mat-drawer-container
+  (backdropClick)="sidebar.close()"
+  [hasBackdrop]="true"
+  autosize
+  class="sidebar-container"
+>
+  <mat-drawer
+    #sidebar
+    class="sidenav"
+    mode="over">
+
+    <button
+      [hidden]="playerDomainHiddenState"
+      [routerLink]="'game'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>casino</mat-icon>
+      Game
+    </button>
+
+    <button
+      [hidden]="adminDomainHiddenState"
+      [routerLink]="'/admin'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>settings</mat-icon>
+      Admin
+    </button>
+
+    <button
+      [routerLink]="'/rules'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>info</mat-icon>
+      Rules
+    </button>
+
+    <button
+      [hidden]="playerDomainHiddenState"
+      [routerLink]="'/profile'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>person</mat-icon>
+      My account
+    </button>
+
+    <button
+      [hidden]="userLoginState"
+      [routerLink]="'/login'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>login</mat-icon>
+      Log in
+    </button>
+
+    <button
+      [hidden]="userLoginState"
+      [routerLink]="'/register'"
+      class="sidebar-element"
+      mat-button>
+      <mat-icon>input</mat-icon>
+      Register
+    </button>
+
+    <button
+      (click)="logOut()"
+      [hidden]="!userLoginState"
+      [routerLink]="'/home'"
+      class="sidebar-element"
+      mat-button
+    >
+      <mat-icon>logout</mat-icon>
+      Log out
+    </button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button
+        (click)="sidebar.open()"
+        aria-label="icon-button with menu icon"
+        class="is-hidden-desktop is-hidden-tablet"
+        mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <button
+        [routerLink]="'/home'"
+        mat-button>
+        <img
+          class="to-homepage-button"
+          alt="Monopoly logo and home button"
+          src="assets/images/board-title-image.png">
+      </button>
+
+      <span class="spacer"></span>
+
+      <button
+        [hidden]="playerDomainHiddenState"
+        [routerLink]="'game'"
+        class="is-hidden-mobile"
+        mat-button>
+        <mat-icon>casino</mat-icon>
+        Game
+      </button>
+
+      <button
+        [hidden]="adminDomainHiddenState"
+        [routerLink]="'/admin'"
+        class="is-hidden-mobile"
+        mat-button>
+        <mat-icon>settings</mat-icon>
+        Admin
+      </button>
+
+      <button
+        [routerLink]="'/rules'"
+        class="is-hidden-mobile"
+        mat-button>
+        <mat-icon>info</mat-icon>
+        Rules
+      </button>
+
+      <button
+        [hidden]="playerDomainHiddenState"
+        [routerLink]="'/profile'"
+        class="is-hidden-mobile"
+        mat-button>
+        <mat-icon>person</mat-icon>
+        My account
+      </button>
+
+      <button
+        [hidden]="userLoginState"
+        [routerLink]="'/login'"
+        class="is-hidden-mobile"
+        mat-button>
+        <mat-icon>login</mat-icon>
+        Log in
+      </button>
+
+      <button
+        [hidden]="userLoginState"
+        [routerLink]="'/register'"
+        class="is-hidden-mobile"
+        mat-button
+      >
+        <mat-icon>input</mat-icon>
+        Register
+      </button>
+
+      <button
+        (click)="logOut()"
+        [hidden]="!userLoginState"
+        [routerLink]="'/home'"
+        class="is-hidden-mobile"
+        mat-button
+      >
+        <mat-icon>logout</mat-icon>
+        Log out
+      </button>
+
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>

@@ -1,0 +1,10 @@
+<span>
+  {{ data.message }}
+</span>
+
+<button
+  (click)="snackbar.dismissWithAction()"
+  *ngIf="data.action !== undefined"
+  mat-stroked-button
+>{{ data.action }}
+</button>

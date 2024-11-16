@@ -1,0 +1,115 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$front-end-primary: mat.define-palette(mat.$indigo-palette);
+$front-end-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$front-end-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$front-end-theme: mat.define-light-theme((
+  color: (
+    primary: $front-end-primary,
+    accent: $front-end-accent,
+    warn: $front-end-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($front-end-theme);
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  background-image: url("assets/images/light_bg.jpg");
+  overflow-y: hidden !important;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@import "./node_modules/bulma/bulma.sass";
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #D62929;
+}
+
+.columns {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// Styles for Snackbar components
+.snackbarBaseStyle {
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: white;
+}
+
+.snackbarSuccesStyle {
+  background-color: #76f45a;
+}
+
+.snackbarWarningStyle {
+  background-color: #f45a5a;
+}
+
+// Styles for Dialog components
+.dialogBaseStyle {
+  border-radius: 5px;
+}
+
+// Scroll bar
+$SCROLLBAR_WIDTH_AND_HEIGHT: 2px;
+
+.scrollbar-styled::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-styled::-webkit-scrollbar {
+  width: $SCROLLBAR_WIDTH_AND_HEIGHT;
+  height: $SCROLLBAR_WIDTH_AND_HEIGHT;
+  background-color: #F5F5F5;
+}
+
+.scrollbar-styled::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #D62929;
+}

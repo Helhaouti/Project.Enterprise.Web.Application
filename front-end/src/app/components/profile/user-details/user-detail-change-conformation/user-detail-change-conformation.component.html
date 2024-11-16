@@ -1,0 +1,43 @@
+<mat-dialog-content>
+  <h1>Requested changes</h1>
+
+  <div *ngFor="let item of changedValues" class="box">
+    <h1>{{ item.key }}</h1>
+    <p>{{ item.value }}</p>
+  </div>
+
+  <h1>Confirm with username and password</h1>
+
+  <form #logInForm>
+    <mat-form-field appearance="outline" class="row">
+      <mat-label>Nick name</mat-label>
+      <input
+        #nickNameField
+        [required]="true"
+        matInput
+        type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="row">
+      <mat-label>Password</mat-label>
+      <input
+        #passwordField
+        [required]="true"
+        matInput
+        type="password">
+    </mat-form-field>
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button>Cancel</button>
+  <button
+    (click)="onSubmit(nickNameField.value, passwordField.value)"
+    [disabled]="!logInForm.checkValidity()"
+    cdkFocusInitial
+    mat-button>
+    Submit changes
+  </button>
+</mat-dialog-actions>
+

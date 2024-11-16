@@ -1,0 +1,14 @@
+<div class="actions-container scrollbar-styled">
+  <div class="wrapper">
+    <h1>Game history</h1>
+
+    <ul class="sessions">
+      <li *ngFor="let action of actions">
+        <div class="time">{{ action.performedAt.toLocaleTimeString() }}</div>
+
+        <p>{{ action.toString() }}</p>
+      </li>
+    </ul>
+
+  </div>
+</div>

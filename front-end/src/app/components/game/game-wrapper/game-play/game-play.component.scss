@@ -1,0 +1,54 @@
+// =================
+// LAYOUT
+// =================
+
+#gameContainer {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mainColumn {
+  max-width: max-content;
+}
+
+.sideColumn {
+  max-width: 250px;
+}
+
+// =================
+// UTILITY
+// =================
+
+$side-window-width: min(425px, 92vw);
+
+.sideWindow {
+  width: $side-window-width;
+  min-height: calc(min(425px, 92vw) * 1.25);
+}
+
+.turnTrackerSideWindow {
+  height: max-content;
+  width: $side-window-width;
+}
+
+.buttonSideWindow {
+  height: max-content;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  gap: 1rem;
+
+  button {
+    display: block;
+    width: 175px - 32px;
+  }
+}
+
+.profilePic {
+  background: darkgrey;
+  border-radius: 25px;
+  padding: 20px;
+  width: 20px;
+  height: 20px;
+}

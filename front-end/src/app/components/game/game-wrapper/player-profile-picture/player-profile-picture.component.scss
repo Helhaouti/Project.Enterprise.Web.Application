@@ -1,0 +1,17 @@
+.small {
+  $profile-pic-size: 2rem;
+  width: $profile-pic-size;
+  height: $profile-pic-size;
+}
+
+.medium {
+  $profile-pic-size: 5rem;
+  width: $profile-pic-size;
+  height: $profile-pic-size;
+}
+
+.big {
+  $profile-pic-size: 8rem;
+  width: $profile-pic-size;
+  height: $profile-pic-size;
+}

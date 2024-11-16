@@ -1,0 +1,74 @@
+<div class="box">
+  <h1>
+    My account information
+  </h1>
+
+  <form [formGroup]="formGroup">
+
+    <!-- User name -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nick name</mat-label>
+      <input
+        formControlName="username"
+        matInput
+        type="text">
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        type="password">
+    </mat-form-field>
+
+    <!-- First Name -->
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input
+        formControlName="firstName"
+        matInput
+        type="text">
+    </mat-form-field>
+
+    <!-- Last Name -->
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input
+        formControlName="lastName"
+        matInput
+        type="text">
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        formControlName="email"
+        matInput
+        type="email">
+    </mat-form-field>
+
+    <!-- Country code -->
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <mat-select
+        formControlName="countryCode"
+        value="{{ user.countryCode }}">
+        <mat-option value="NL">Netherlands</mat-option>
+        <mat-option value="BE">Belgium</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-button
+      [disabled]="!canSubmit()"
+      (click)="submit()">
+      <mat-icon>check</mat-icon>
+      Submit changes
+    </button>
+
+  </form>
+
+</div>

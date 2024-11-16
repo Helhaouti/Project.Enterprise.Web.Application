@@ -1,0 +1,23 @@
+<form class="example-form" novalidate>
+  <mat-form-field class="example-full-width">
+    <mat-select #timePerTurn placeholder="Maximum amount of minutes per turn" [(ngModel)]="minutesPerTurnChoice"
+                name="minutesPerTurn">
+      <ng-container *ngFor="let minute of minutesBeforeTurnArray">
+        <mat-option [value]="minute">{{ minute }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-select #gameEnds placeholder="Added game time in hours" [(ngModel)]="maxGameTimeChoice" name="maxGameTime">
+      <ng-container *ngFor="let hour of maxGameTimeArray">
+        <mat-option [value]="hour">{{ hour }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+
+  <button mat-raised-button (click)="onSubmit()">Submit changes</button>
+</form>
+

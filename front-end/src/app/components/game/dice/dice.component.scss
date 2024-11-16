@@ -1,0 +1,49 @@
+.container {
+  background-color: #e20613;
+  color: white;
+
+  border-radius: 5px;
+
+  height: 300px;
+  width: 300px;
+
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.dices {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.dice {
+  width: 125px;
+  height: 125px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: lighter;
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}

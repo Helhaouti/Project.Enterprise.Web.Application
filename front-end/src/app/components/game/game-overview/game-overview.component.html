@@ -1,0 +1,155 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <div class="column is-full">
+
+      <div class="box">
+        <!-- Create new game section -->
+        <div class="buttons is-centered">
+          <button
+            (click)="createNewGame()"
+            mat-raised-button
+          >
+            <mat-icon>casino</mat-icon>
+            Create new game
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="column is-full-mobile is-full-tablet is-half-desktop">
+
+      <div class="box">
+        <!--
+        Joinable games Sections
+        -->
+        <h1>Joinable games</h1>
+
+        <div
+          *ngIf="this.joinableGames.length > 0; else noJoinableGamesPlaceholder"
+          class="game-info-container scrollbar-styled"
+        >
+
+          <div *ngFor="let gameInfo of this.joinableGames" class="mat-elevation-z4 game-info-representation">
+            <div class="button-container">
+              <button
+                (click)="onJoin(gameInfo)"
+                mat-icon-button
+                matTooltip="Join game."
+              >
+                <mat-icon>casino</mat-icon>
+              </button>
+            </div>
+
+            <div class="game-info-attributes-container">
+              <div class="game-info-attribute-container">
+                <h3>Creator</h3>
+                <p>{{ gameInfo.creator }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Participants</h3>
+                <p>{{ gameInfo.players.length }}/{{ gameInfo.maxPlayers }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Starts at</h3>
+                <p>{{ gameInfo.startsAt.toLocaleString() }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Max time per turn</h3>
+                <p>{{ gameInfo.maxTimeTurn }} min</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Ends at</h3>
+                <p>{{ gameInfo.endsAt.toLocaleString() }}</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <ng-template #noJoinableGamesPlaceholder>
+          <p class="has-text-centered is-size-6 is-italic">
+            There are no game to joins.
+            <br> Click on <a (click)="createNewGame()" class="is-bold">Create new game</a> to create a session.
+          </p>
+        </ng-template>
+
+      </div>
+    </div>
+
+    <div class="column is-full-mobile is-full-tablet is-half-desktop">
+
+      <div class="box">
+        <h1>My Games</h1>
+
+        <!--
+        Games history section
+        -->
+        <div
+          *ngIf="this.gameHistory.length > 0; else noGameHistoryPlaceHolder"
+          class="game-info-container scrollbar-styled"
+        >
+
+          <div *ngFor="let gameInfo of this.gameHistory" class="mat-elevation-z4 game-info-representation">
+            <div class="button-container">
+              <button
+                (click)="onJoin(gameInfo)"
+                [hidden]="!checkIfJoinable(gameInfo)"
+                mat-icon-button
+                matTooltip="Join game."
+              >
+                <mat-icon>casino</mat-icon>
+              </button>
+
+              <button
+                (click)="onView(gameInfo)"
+                [hidden]="checkIfJoinable(gameInfo)"
+                mat-icon-button
+                matTooltip="View statistics."
+              >
+                <mat-icon>info</mat-icon>
+              </button>
+            </div>
+
+            <div class="game-info-attributes-container">
+              <div class="game-info-attribute-container">
+                <h3>Creator</h3>
+                <p>{{ gameInfo.creator }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Max players</h3>
+                <p>{{ gameInfo.maxPlayers }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Starts at</h3>
+                <p>{{ gameInfo.startsAt.toLocaleString() }}</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Max time per turn</h3>
+                <p>{{ gameInfo.maxTimeTurn }} min</p>
+              </div>
+              <div class="game-info-attribute-container">
+                <h3>Ends at</h3>
+                <p>{{ gameInfo.endsAt.toLocaleString() }}</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <ng-template #noGameHistoryPlaceHolder>
+          <p class="has-text-centered is-size-6 is-italic">
+            You have not played any game before.
+            <br> You can change that by creating or joining an active game.
+          </p>
+        </ng-template>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+.container {
+  margin-top: 2rem;
+}
+
+.row {
+  display: block;
+  flex: 1;
+}
+
+$profile-pic-size: 7rem;
+
+.profile-pic-placeholder {
+  margin: 2rem auto;
+  width: $profile-pic-size;
+  height: $profile-pic-size;
+  background-color: blue;
+  border-radius: 50%;
+}

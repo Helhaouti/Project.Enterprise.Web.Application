@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <!-- Short profile overview  -->
+    <div class="column is-mobile">
+      <div class="box">
+        <div class="is-flex">
+          <app-profile-pic-manager></app-profile-pic-manager>
+
+          <div class="profileDetailsContainer">
+            <h1>
+              {{ currentUser.username }}
+            </h1>
+            <h2>
+              {{ currentUser.firstName + " " + currentUser.lastName }}
+            </h2>
+            <h3>
+              Active since: {{ currentUser.createdAt.toLocaleDateString() }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editing/Overview of user credentials section -->
+    <div class="column is-mobile">
+      <app-user-details></app-user-details>
+    </div>
+
+  </div>
+
+</div>

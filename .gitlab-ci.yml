@@ -1,0 +1,36 @@
+stages:
+  - deploy
+
+deploy_be:
+  stage: deploy
+  image: node:latest
+  tags:
+    - hva
+  only:
+    refs:
+      - Master
+    changes:
+      - "back-end/**/*"
+  script:
+    - git remote rm ewa-be || true
+    - git remote add ewa-be https://heroku:$HEROKU_API_KEY@git.heroku.com/ewa-be.git || true
+    - git subtree split --prefix back-end -b splitting-be
+    - git push --force ewa-be splitting-be:master
+    - git branch -D splitting-be
+
+deploy_fe:
+  stage: deploy
+  image: node:latest
+  tags:
+    - hva
+  only:
+    refs:
+      - Master
+    changes:
+      - "front-end/**/*"
+  script:
+    - git remote rm ewa-fe || true
+    - git remote add ewa-fe https://heroku:$HEROKU_API_KEY@git.heroku.com/ewa-fe.git || true
+    - git subtree split --prefix front-end -b splitting-fe
+    - git push --force ewa-fe splitting-fe:master
+    - git branch -D splitting-fe

@@ -1,0 +1,30 @@
+<button
+  [matMenuTriggerFor]="menu"
+  class="profilePicButton"
+  mat-icon-button
+>
+  <figure class="image is-1by1">
+    <img class="is-rounded" [src]="profilePictureSource">
+  </figure>
+</button>
+
+<input
+  #fileInput
+  [hidden]="true"
+  accept="image/png"
+  id="fileInput"
+  type="file"
+  (change)="onFileChange(fileInput)"
+>
+
+<mat-menu #menu="matMenu">
+  <h2 class="uploadMenuTitle">Options</h2>
+  <button (click)="onSelectProfilePic(fileInput)" mat-menu-item>
+    <mat-icon>storage</mat-icon>
+    Upload new picture from device
+  </button>
+  <button (click)="onDeleteProfilePicture()" mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    Delete current picture
+  </button>
+</mat-menu>

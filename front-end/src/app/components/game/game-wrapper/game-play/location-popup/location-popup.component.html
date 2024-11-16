@@ -1,0 +1,168 @@
+<div class="location-card">
+
+  <div
+    *ngIf="getPropertyColor()"
+    class="color-bar {{getPropertyColor()}}"
+  ></div>
+
+  <div class="rowContainer">
+    <h3>Name</h3>
+    <p>{{ location.toString() }}</p>
+  </div>
+
+  <div *ngIf="location.description.trim().length > 0" class="rowContainer">
+    <h3>Description</h3>
+    <p>{{ location.description }}</p>
+  </div>
+
+  <ng-container *ngIf="isOwnableLocation()">
+    <div class="rowContainer">
+      <h3>Initial purchase price</h3>
+      <p>{{ getInitialPurchasePrice() }}</p>
+    </div>
+
+    <ng-container *ngIf="getProperty()">
+      <div class="rowContainer">
+        <h3>Cost of house/hotel building each</h3>
+        <p>${{ getProperty().propertyDevelopmentCost }}</p>
+      </div>
+
+      <div class="rowContainer">
+        <h3>Rent</h3>
+        <pre>0:                   ${{ getProperty().rentWithNoHouse }}</pre>
+        <pre>1 house:       ${{ getProperty().rentWithOneHouse }}</pre>
+        <pre>2 house:       ${{ getProperty().rentWithTwoHouses }}</pre>
+        <pre>3 house:       ${{ getProperty().rentWithThreeHouses }}</pre>
+        <pre>4 house:       ${{ getProperty().rentWithFourHouses }}</pre>
+        <pre>1 hotel:         ${{ getProperty().rentWithHotel }}</pre>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="getRailRoad()">
+      <div class="rowContainer">
+        <h3>Rent per amount of owned rail roads.</h3>
+        <pre>1 rail road:         ${{ getRailRoad().rent }}</pre>
+        <pre>2 rail roads:       ${{ getRailRoad().rentIfTwoAreOwned }}</pre>
+        <pre>3 rail roads:       ${{ getRailRoad().rentIfThreeOwned }}</pre>
+        <pre>4 rail roads:       ${{ getRailRoad().rentIfFourAreOwned }}</pre>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="getUtility()">
+      <div class="rowContainer">
+        <h3>Rent as dice-roll factor per amount of owned utilities.</h3>
+        <pre>1 utility:            ${{ getUtility().diceRollRentFactor }}</pre>
+        <pre>2 utilities:         ${{ getUtility().diceRollRentFactorIfTwoAreOwned }}</pre>
+      </div>
+    </ng-container>
+
+    <div class="rowContainer">
+      <h3>Current rent</h3>
+      <p>{{ this.determineRequiredRent() }}</p>
+    </div>
+
+    <div class="rowContainer">
+      <h3>Current owner</h3>
+      <p *ngIf="!getCurrentOwner()">The bank</p>
+
+      <div *ngIf="getCurrentOwner()" class="playerOverview scrollbar-styled">
+        <mat-card
+          class="playerContainer"
+        >
+          <mat-card-content class="is-flex is-justify-content-center">
+            <app-player-profile-picture
+              [player]="getCurrentOwner()!"
+              size="medium"
+            ></app-player-profile-picture>
+          </mat-card-content>
+          <mat-card-subtitle>{{ getCurrentOwner().user.firstName + " " + getCurrentOwner().user.lastName }}</mat-card-subtitle>
+          <mat-card-title>{{ getCurrentOwner().user.username }}</mat-card-title>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="isDevelopmentPossible() && availablePropertyDevelopmentOptions.length > 0"
+       class="rowContainer developProperty">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Develop on property</mat-label>
+      <mat-select #toPropertyDevelopmentLevel>
+        <ng-container *ngFor="let option of this.availablePropertyDevelopmentOptions">
+          <mat-option
+            [value]="option.key"
+          >
+            {{ option.value }}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="player-card-buttons">
+      <button
+        (click)="onDevelopProperty(toPropertyDevelopmentLevel.value)"
+        mat-raised-button
+      >
+        <mat-icon>upgrade</mat-icon>
+        Develop
+      </button>
+    </div>
+
+  </div>
+
+  <ng-container *ngIf="this.gameStateManagerService.getPlayersAt(this.location.position).length > 0">
+    <h3>Players on here</h3>
+
+    <div class="playerOverview scrollbar-styled">
+      <mat-card *ngFor="let player of this.gameStateManagerService.getPlayersAt(this.location.position)"
+                class="playerContainer">
+        <mat-card-content class="is-flex is-justify-content-center">
+          <app-player-profile-picture
+            [player]="player"
+            size="medium"
+          ></app-player-profile-picture>
+        </mat-card-content>
+        <mat-card-subtitle>{{ player.user.firstName + " " + player.user.lastName }}</mat-card-subtitle>
+        <mat-card-title>{{ player.user.username }}</mat-card-title>
+      </mat-card>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="isJail() && this.gameStateManagerService.getPlayersInJail().length > 0">
+    <h3>Jailed players</h3>
+    <div class="playerOverview scrollbar-styled">
+      <mat-card *ngFor="let player of this.gameStateManagerService.getPlayersInJail()" class="playerContainer">
+        <mat-card-content class="is-flex is-justify-content-center">
+          <app-player-profile-picture
+            [player]="player"
+            size="medium"
+          ></app-player-profile-picture>
+        </mat-card-content>
+        <mat-card-subtitle>{{ player.user.firstName + " " + player.user.lastName }}</mat-card-subtitle>
+        <mat-card-title>{{ player.user.username }}</mat-card-title>
+      </mat-card>
+    </div>
+  </ng-container>
+
+  <div class="spacer"></div>
+
+  <div class="player-card-buttons">
+    <button
+      (click)="onClose()"
+      mat-raised-button
+    >
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+
+    <button
+      (click)="onBuyCurrentLocation()"
+      [hidden]="!isBuyable()"
+      mat-raised-button
+    >
+      <mat-icon>shopping_cart</mat-icon>
+      Buy
+    </button>
+  </div>
+
+</div>

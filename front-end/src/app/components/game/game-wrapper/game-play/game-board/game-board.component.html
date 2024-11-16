@@ -1,0 +1,137 @@
+<ng-template #drawChestCardDeck>
+  <div
+    (click)="onDrawChestCard()"
+    *ngIf="canCurrentPlayerPickChestCard"
+    [matRippleCentered]="true"
+    class="deck"
+    mat-ripple
+  >
+    <img src="/assets/images/community/communityChest.png">
+  </div>
+</ng-template>
+
+<ng-template #drawChanceCardDeck>
+
+  <div
+    (click)="onDrawChanceCard()"
+    *ngIf="canCurrentPlayerPickChanceCard"
+    [matRippleCentered]="true"
+    class="deck"
+    mat-ripple
+  >
+    <img src="/assets/images/chance/Chances.webp">
+  </div>
+</ng-template>
+
+<!-- Small screen game board -->
+<div *ngIf="windowWidth() < SCREEN_WIDTH_BREAKPOINT" class="carousel">
+  <board-location
+    *ngFor="let i of locations"
+    [location]="i"
+    [players]="players"
+    position="bottom"
+    [ownableLocationTracker]="getStateOf(i)"
+  ></board-location>
+</div>
+
+<div *ngIf="windowWidth() < SCREEN_WIDTH_BREAKPOINT" class="carousel-card-deck">
+  <div class="card-deck">
+    <h2 class="label">Chance</h2>
+    <ng-container *ngTemplateOutlet="drawChanceCardDeck"></ng-container>
+  </div>
+
+  <div class="card-deck">
+    <h2 class="label">Community Chest</h2>
+    <ng-container *ngTemplateOutlet="drawChestCardDeck"></ng-container>
+  </div>
+</div>
+
+<!-- Large screen game board -->
+<div *ngIf="windowWidth() >= SCREEN_WIDTH_BREAKPOINT" class="board">
+  <div class="center">
+    <div class="community-chest-deck">
+      <h2 class="label">Community Chest</h2>
+      <ng-container *ngTemplateOutlet="drawChestCardDeck"></ng-container>
+    </div>
+
+    <img class="title" src="assets/images/board-title-image.png">
+
+    <div class="chance-deck">
+      <h2 class="label">Chance</h2>
+      <ng-container *ngTemplateOutlet="drawChanceCardDeck"></ng-container>
+    </div>
+  </div>
+
+  <div [matRippleCentered]="true" class="go" matRipple>
+    <board-location
+      [location]="locationCornerGo"
+      [players]="players"
+      position="bottom"
+    ></board-location>
+  </div>
+
+  <div class="row horizontal-row bottom-row">
+    <board-location
+      *ngFor="let i of getBottomRowLocations()"
+      [location]="i"
+      [players]="players"
+      [ownableLocationTracker]="getStateOf(i)"
+      position="bottom"
+    ></board-location>
+  </div>
+
+  <div class="jail">
+    <board-location
+      [location]="locationCornerJail"
+      [players]="players"
+      position="bottom"
+    ></board-location>
+  </div>
+
+  <div class="row vertical-row left-row">
+    <board-location
+      *ngFor="let i of getLeftRowLocations()"
+      [location]="i"
+      [players]="players"
+      [ownableLocationTracker]="getStateOf(i)"
+      position="left"
+    ></board-location>
+  </div>
+
+  <div class="mat-elevation-z7 free-parking">
+    <board-location
+      [location]="locationCornerFreeParking"
+      [players]="players"
+      position="top"
+    ></board-location>
+  </div>
+
+  <div class="row horizontal-row top-row">
+    <board-location
+      *ngFor="let i of getTopRowLocations()"
+      [location]="i"
+      [ownableLocationTracker]="getStateOf(i)"
+      [players]="players"
+      position="top"
+    ></board-location>
+  </div>
+
+  <div class="mat-elevation-z7 go-to-jail">
+    <board-location
+      [location]="locationCornerGoToJail"
+      [players]="players"
+      position="top"
+    ></board-location>
+  </div>
+
+  <div class="row vertical-row right-row">
+    <board-location
+      *ngFor="let i of getRightRowLocations()"
+      [location]="i"
+      [ownableLocationTracker]="getStateOf(i)"
+      [players]="players"
+      position="right"
+    ></board-location>
+  </div>
+
+</div>

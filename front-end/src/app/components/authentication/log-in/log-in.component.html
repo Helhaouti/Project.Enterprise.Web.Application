@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <div class="column is-full-mobile is-half-tablet is-half-desktop">
+
+      <div class="box">
+        <h1>Log in</h1>
+
+        <form #logInForm>
+          <mat-form-field appearance="outline" class="row">
+
+            <mat-label>Nick name</mat-label>
+            <input
+              #nickNameField
+              [required]="true"
+              matInput
+              type="text">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="row">
+
+            <mat-label>Password</mat-label>
+            <input
+              #passwordField
+              [required]="true"
+              matInput
+              type="password">
+          </mat-form-field>
+
+        </form>
+
+        <p>No account yet? <a [routerLink]="'/register'">Start here</a></p>
+
+        <button
+          (click)="onLogin(nickNameField.value, passwordField.value)"
+          [disabled]="!logInForm.checkValidity()"
+          mat-raised-button>
+
+          <mat-icon>login</mat-icon>
+          Log in
+        </button>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

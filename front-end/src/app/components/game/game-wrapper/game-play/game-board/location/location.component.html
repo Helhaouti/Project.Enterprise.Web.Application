@@ -1,0 +1,116 @@
+<div *ngIf="location != undefined && !isBoardCorner()" class="property-container">
+
+  <div
+    (click)="onClick()"
+    [matRippleCentered]="true"
+    class="mat-elevation-z8 space property {{position}}"
+    matRipple
+  >
+    <div class="container">
+      <div
+        *ngIf="getPropertyColor() != undefined"
+        class="color-bar {{getPropertyColor()}}"
+      ></div>
+      <div
+        class="name"
+      >{{ location.toString() }}
+      </div>
+      <div
+        *ngIf="isOwnableLocation()"
+        class="price"
+      >{{ determineRequiredRentOrPrice() }}
+      </div>
+
+      <ng-container *ngIf="getTaxAmount()">
+        <div class="diamond"></div>
+        <div class="instructions">Tax: {{ getTaxAmount() }}</div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="token {{position}} scrollbar-styled">
+    <ng-container *ngFor="let player of players">
+      <app-player-profile-picture
+        *ngIf="player.position === location.position"
+        [player]="player"
+        size="small"
+      ></app-player-profile-picture>
+    </ng-container>
+  </div>
+
+</div>
+
+<div *ngIf="location != undefined && isBoardCorner()" class="corner-container">
+
+  <div
+    (click)="onClick()"
+    *ngIf="isGo()"
+    [matRippleCentered]="true"
+    class="space corner go mat-elevation-z7"
+    mat-ripple
+  >
+    <div class="container">
+      <div class="name">{{ location.description }}</div>
+      <div class="go-word">GO</div>
+    </div>
+  </div>
+
+  <div
+    (click)="onClick()"
+    *ngIf="isGoToJail()"
+    [matRippleCentered]="true"
+    class="space corner jail mat-elevation-z7"
+    mat-ripple
+  >
+    <div class="container">
+      <div class="name">Go To</div>
+      <div class="name">Jail</div>
+    </div>
+  </div>
+
+  <div
+    (click)="onClick()"
+    *ngIf="isFreeParking()"
+    [matRippleCentered]="true"
+    class="space corner parking mat-elevation-z7"
+    mat-ripple
+  >
+    <div class="container">
+      <div class="name">Free</div>
+      <div class="name">Parking</div>
+    </div>
+  </div>
+
+  <div
+    (click)="onClick()"
+    *ngIf="isJail()"
+    [matRippleCentered]="true"
+    class="space corner jail-visiting mat-elevation-z7"
+    mat-ripple
+  >
+    <div class="just">Just</div>
+    <div class="drawing">
+      <div class="container">
+        <div class="name">In</div>
+        <div class="window">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div class="name">Jail</div>
+      </div>
+    </div>
+    <span class="visiting">Visiting</span>
+  </div>
+
+  <div class="boardcorner token {{position}} scrollbar-styled">
+    <ng-container *ngFor="let player of players">
+      <app-player-profile-picture
+        *ngIf="player.position === location.position"
+        [player]="player"
+        size="small"
+      ></app-player-profile-picture>
+    </ng-container>
+  </div>
+
+</div>

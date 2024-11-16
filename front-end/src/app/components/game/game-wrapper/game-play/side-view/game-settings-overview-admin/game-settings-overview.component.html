@@ -1,0 +1,28 @@
+<div class="container">
+  <div *ngIf="this.game != null" class="box has-text-centered">
+    <form class="example-form" novalidate>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" id="maxPlayers" name="maxPlayers" placeholder="maxPlayers"
+               value="{{this.game.maxPlayers}}">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" id="maxTimePerTurn" name="maxTimePerTurn" placeholder="Max time per turn"
+               value="{{this.game.maxTimeTurn}} minutes">
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" id="gameEndsAt" name="gameEndsAt" placeholder="Game ends at"
+               value="{{this.gameEndsAt}}">
+      </mat-form-field>
+      <br>
+    </form>
+  </div>
+  <div class="box has-text-centered">
+    <button mat-raised-button (click)="editSettings()">Edit settings</button>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,21 @@
+<div class="monopoly-card">
+  <div class="monopoly-card-title has-text-centered">
+    <h3>{{ cardPickerDescription }} a</h3>
+    <h1>{{ cardTypeDescription }}</h1>
+  </div>
+
+  <div class="monopoly-man-image">
+    <img src="../../../../assets/images/monopoly_guy.jpg">
+  </div>
+
+  <div class="monopoly-card-attributes">
+    <h3>Description</h3>
+    <p>{{ this.pickedCard.description }}</p>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="monopoly-card-buttons">
+    <button (click)="onClick()" mat-raised-button>Ok!</button>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="container">
+
+  <div class="columns is-multiline is-centered">
+    <div class="column is-full-mobile is-half-tablet is-half-desktop">
+
+      <div class="box">
+        <h1>Create game</h1>
+
+        <p class="mat-elevation-z4" id="instructionText">
+          <a class="iconContainer">
+            <mat-icon>priority_high</mat-icon>
+          </a>
+          Fill in all fields to create a game
+        </p>
+
+        <div class="optionContainer">
+          <p class="optionLabel">Maximum amount of players</p>
+          <mat-form-field appearance="outline" class="settingsInput">
+            <mat-select [(ngModel)]="maxAmountOfPlayerChoice">
+              <ng-container *ngFor="let player of maxPlayersArray">
+                <mat-option [value]="player">{{ player }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="optionContainer">
+          <p class="optionLabel">Minutes before game starts</p>
+          <mat-form-field appearance="outline" class="settingsInput">
+            <mat-select [(ngModel)]="minutesBeforeGameStartsChoice">
+              <ng-container *ngFor="let minute of minutesBeforeGameStartArray">
+                <mat-option [value]="minute">{{ minute }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="optionContainer">
+          <p class="optionLabel">Maximum amount of minutes per turn</p>
+          <mat-form-field appearance="outline" class="settingsInput">
+            <mat-select [(ngModel)]="minutesPerTurnChoice">
+              <ng-container *ngFor="let minute of minutesBeforeTurnArray">
+                <mat-option [value]="minute">{{ minute }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="optionContainer">
+          <p class="optionLabel">Maximum game time in hours</p>
+          <mat-form-field appearance="outline" class="settingsInput">
+            <mat-select [(ngModel)]="maxGameTimeChoice">
+              <ng-container *ngFor="let hour of maxGameTimeArray">
+                <mat-option [value]="hour">{{ hour }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="buttons is-right">
+          <button
+            (click)="onBack()"
+            mat-raised-button
+          >
+            <mat-icon>arrow_back</mat-icon>
+            back
+          </button>
+          <button
+            (click)="createGame()"
+            mat-raised-button
+          >
+            <mat-icon>casino</mat-icon>
+            Create game
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
